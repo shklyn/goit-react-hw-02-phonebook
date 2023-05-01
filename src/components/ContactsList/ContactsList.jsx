@@ -5,12 +5,16 @@ import { ContactItem } from 'components/ContactItem/ContactItem';
 export const ContactsList = ({ contacts, onDeleteContact }) => {
   return (
     <Ol>
-      <ContactItem contacts={contacts} onDeleteContact={onDeleteContact} />
+      {contacts.map(({ id, name, number }) => {
+        return (
+          <ContactItem
+            key={id}
+            name={name}
+            number={number}
+            onDeleteContact={onDeleteContact}
+          />
+        );
+      })}
     </Ol>
   );
-};
-
-ContactsList.propTypes = {
-    contacts: PropTypes.array.isRequired,
-    onDeleteContact: PropTypes.func.isRequired,
 };
